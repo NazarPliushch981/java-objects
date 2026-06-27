@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Повний код (1 + 2 + 3)</title>
+</head>
+<body>
+
+    <script>
+        let car = {
+            make: "Toyota",
+            model: "Camry",
+            year: 2018,
+            speed: 90
+        };
+
+        function showCar(c) {
+            console.log("Виробник: " + c.make);
+            console.log("Модель: " + c.model);
+            console.log("Рік: " + c.year);
+            console.log("Швидкість: " + c.speed + " км/год");
+        }
+
+        function calcTime(c, distance) {
+            let cleanTime = distance / c.speed;
+            let rests = Math.floor(cleanTime / 4);
+            if (cleanTime % 4 === 0 && rests > 0) {
+                rests--;
+            }
+            return cleanTime + rests;
+        }
+
+        let drob1 = { num: 1, denom: 2 };
+        let drob2 = { num: 1, denom: 3 };
+
+        function sokratit(d) {
+            let nsd = 1;
+            let min = Math.min(Math.abs(d.num), Math.abs(d.denom));
+            for (let i = 1; i <= min; i++) {
+                if (d.num % i === 0 && d.denom % i === 0) {
+                    nsd = i;
+                }
+            }
+            d.num = d.num / nsd;
+            d.denom = d.denom / nsd;
+            return d;
+        }
+
+        function plus(d1, d2) {
+            let res = {
+                num: d1.num * d2.denom + d2.num * d1.denom,
+                denom: d1.denom * d2.denom
+            };
+            return sokratit(res);
+        }
+
+        function minus(d1, d2) {
+            let res = {
+                num: d1.num * d2.denom - d2.num * d1.denom,
+                denom: d1.denom * d2.denom
+            };
+            return sokratit(res);
+        }
+
+        function umnozhit(d1, d2) {
+            let res = {
+                num: d1.num * d2.num,
+                denom: d1.denom * d2.denom
+            };
+            return sokratit(res);
+        }
+
+        function razdelit(d1, d2) {
+            let res = {
+                num: d1.num * d2.denom,
+                denom: d1.denom * d2.num
+            };
+            return sokratit(res);
+        }
+
+        let myTime = {
+            h: 20,
+            m: 30,
+            s: 45
+        };
+
+        function showTime(t) {
+            let hh = t.h < 10 ? "0" + t.h : t.h;
+            let mm = t.m < 10 ? "0" + t.m : t.m;
+            let ss = t.s < 10 ? "0" + t.s : t.s;
+            console.log(hh + ":" + mm + ":" + ss);
+        }
+
+        function addSeconds(t, seconds) {
+            let totalSec = t.h * 3600 + t.m * 60 + t.s + seconds;
+            if (totalSec < 0) {
+                totalSec = 86400 + (totalSec % 86400);
+            }
+            t.h = Math.floor(totalSec / 3600) % 24;
+            t.m = Math.floor((totalSec % 3600) / 60);
+            t.s = totalSec % 60;
+        }
+
+        function addMinutes(t, minutes) {
+            addSeconds(t, minutes * 60);
+        }
+
+        function addHours(t, hours) {
+            addSeconds(t, hours * 3600);
+        }
+
+        showCar(car);
+        console.log("Ділення дробів:", razdelit(drob1, drob2));
+        showTime(myTime);
+        addSeconds(myTime, 30);
+        showTime(myTime);
+    </script>
+    
+</body>
+</html>
