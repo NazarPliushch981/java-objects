@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Завдання 1</title>
+</head>
+<body>
+
+    <script>
+        let car = {
+            make: "Toyota",
+            model: "Camry",
+            year: 2018,
+            speed: 90
+        };
+
+        function showCar(c) {
+            console.log("Виробник: " + c.make);
+            console.log("Модель: " + c.model);
+            console.log("Рік: " + c.year);
+            console.log("Швидкість: " + c.speed + " км/год");
+        }
+
+        function calcTime(c, distance) {
+            let cleanTime = distance / c.speed;
+            let rests = Math.floor(cleanTime / 4);
+            if (cleanTime % 4 === 0 && rests > 0) {
+                rests--;
+            }
+            return cleanTime + rests;
+        }
+
+        showCar(car);
+        console.log("Час у дорозі: " + calcTime(car, 360) + " год");
+    </script>
+    
+</body>
+</html>
